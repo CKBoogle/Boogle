@@ -8,7 +8,7 @@ public class PlayerMoveState : IState
 	public void Enter()
 	{
 		pc.LookAt(pc.MouseWorldPosition); // 즉시 회전
-		pc.Agent.SetDestination(pc.MouseWorldPosition);
+		pc.Agent.SetDestination(pc.MouseWorldPosition); // 도착지를 마우스 위치로 설정
     }
 
 	public void Update()

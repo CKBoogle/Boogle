@@ -13,7 +13,7 @@ public class PlayerDashState : IState
 		pc.LookAt(pc.MouseWorldPosition); // 마우스 방향 응시
 		pc.Agent.ResetPath();
 
-		// Dash 물리 처리는 Warp나 Velocity로 수정해야됨(임시로 즉시이동)
+		// Dash처리는 Velocity로 수정할예정(임시로 즉시이동)
 		Vector3 dashDir = (pc.MouseWorldPosition - pc.transform.position).normalized;
 		pc.Agent.velocity = dashDir * (pc.stats.dashDistance / 0.2f); // 0.2초간 대시
 	}

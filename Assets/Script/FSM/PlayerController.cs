@@ -28,6 +28,7 @@ public class PlayerController : BaseFSM
 		ChangeState(IdleState);
     }
 
+	// PlayerInputSystem에서 우클릭 입력 -> 호출
 	public void OnMove(InputAction.CallbackContext context)
 	{
 		if (context.performed)
@@ -36,7 +37,8 @@ public class PlayerController : BaseFSM
 			ChangeState(MoveState);
 		}
 	}
-
+	
+	// PlayerInputSystem에서 스페이스바 입력 -> 호출
 	public void OnDash(InputAction.CallbackContext context)
 	{
 		if (context.performed)
@@ -46,6 +48,7 @@ public class PlayerController : BaseFSM
 		}
 	}
 
+	// 마우스의 좌표를 구하는 함수
 	private void UpdateMousePosition()
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -55,6 +58,7 @@ public class PlayerController : BaseFSM
 		}
 	}
 
+	// target Vector를 바라보는 함수
 	public void LookAt(Vector3 target)
 	{
 		Vector3 direction = (target - transform.position).normalized;

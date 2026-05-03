@@ -8,7 +8,6 @@ public interface IState
 	void Exit();
 }
 
-//부모 FSM 클래스
 public abstract class BaseFSM : MonoBehaviour
 {
 	protected IState currentState;
