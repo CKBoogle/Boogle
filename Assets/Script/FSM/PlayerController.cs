@@ -8,6 +8,7 @@ public class PlayerController : BaseFSM
 	public PlayerStats stats;
 
 	public NavMeshAgent Agent {  get; private set; }
+	public Animator Anim { get; private set; }
 	public Vector3 MouseWorldPosition { get; private set; }
 
 	public PlayerIdleState IdleState;
@@ -17,6 +18,7 @@ public class PlayerController : BaseFSM
 	void Awake()
 	{
 		Agent = GetComponent<NavMeshAgent>();
+		Anim = GetComponent<Animator>();
 		Agent.speed = stats.moveSpeed;
         Agent.updateRotation = false;
 
