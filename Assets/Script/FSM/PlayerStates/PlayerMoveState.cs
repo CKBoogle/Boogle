@@ -13,17 +13,23 @@ public class PlayerMoveState : IState
 
 	public void Update()
 	{
-		// 이동 중에도 계속 회전 방향 유지
-		if (pc.Agent.velocity.sqrMagnitude > 0.1f)
+		// 다음 꺾이는 지점 바라보기
+		if (pc.Agent.path.corners.Length >= 2)
 		{
-			pc.LookAt(pc.transform.position + pc.Agent.velocity);
+			Vector3 targetDir = (pc.Agent.path.corners[1] - pc.transform.position).normalized;
+			targetDir.y = 0;
+
+			if (targetDir != Vector3.zero)
+			{
+				pc.transform.rotation = Quaternion.Slerp(pc.transform.rotation, Quaternion.LookRotation(targetDir),Time.deltaTime * 10f);
+			}
 		}
 
-		// 목적지 도착 체크
 		if (!pc.Agent.pathPending && pc.Agent.remainingDistance <= pc.Agent.stoppingDistance)
 		{
-			pc.ChangeState(pc.IdleState); 
-        }
+			pc.ChangeState(pc.IdleState);
+		}
 	}
+
 	public void Exit() { }
 }
