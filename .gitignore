@@ -77,6 +77,21 @@ mono_crash.*
 *.unitypackage.meta
 *.app
 
+# Model files
+*.fbx
+*.fbx.meta
+*.obj
+*.obj.meta
+*.max
+*.max.meta
+*.ma
+*.ma.meta
+*.mb
+*.mb.meta
+
+# Textures
+*.psd
+*.tga
 # Crashlytics generated file
 crashlytics-build.properties
 
