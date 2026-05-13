@@ -8,6 +8,7 @@ public class PlayerController : BaseFSM
 	public PlayerStats stats;
 
 	public NavMeshAgent Agent {  get; private set; }
+	public Animator Anim { get; private set; }
 	public Vector3 MouseWorldPosition { get; private set; }
 
 	public PlayerIdleState IdleState;
@@ -17,6 +18,7 @@ public class PlayerController : BaseFSM
 	void Awake()
 	{
 		Agent = GetComponent<NavMeshAgent>();
+		Anim = GetComponent<Animator>();
 		Agent.speed = stats.moveSpeed;
         Agent.updateRotation = false;
 
@@ -33,7 +35,7 @@ public class PlayerController : BaseFSM
 	{
 		if (context.performed)
 		{
-			UpdateMousePosition();
+			GetMouseWorldPosition();
 			ChangeState(MoveState);
 		}
 	}
@@ -43,13 +45,13 @@ public class PlayerController : BaseFSM
 	{
 		if (context.performed)
 		{
-			UpdateMousePosition();
+			GetMouseWorldPosition();
 			ChangeState(DashState);
 		}
 	}
 
 	// 마우스의 좌표를 구하는 함수
-	private void UpdateMousePosition()
+	private void GetMouseWorldPosition()
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 		if(Physics.Raycast(ray, out RaycastHit hit))

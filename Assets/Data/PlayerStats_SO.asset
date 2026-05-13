@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   maxHp: 3
   moveSpeed: 5
-  dashDistance: 3
+  dashDistance: 9
   dashCooldown: 1
   dashInvincibleTime: 2
